@@ -1,0 +1,70 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken,  MIT Press.
+// File name: projects/03/a/Register.hdl
+
+/**
+ * 16-bit register:
+ * If load[t] == 1 then out[t+1] = in[t]
+ * else out does not change
+ */
+
+CHIP Register {
+    IN in[16], load;
+    OUT out[16];
+
+    PARTS:
+    Mux(a=DoMaAb1, b=in[0], sel=load, out=MoDi1);
+    DFF(in=MoDi1, out=DoMaAb1);
+
+    Mux(a=DoMaAb2, b=in[1], sel=load, out=MoDi2);
+    DFF(in=MoDi2, out=DoMaAb2);
+
+    Mux(a=DoMaAb3, b=in[2], sel=load, out=MoDi3);
+    DFF(in=MoDi3, out=DoMaAb3);
+
+    Mux(a=DoMaAb4, b=in[3], sel=load, out=MoDi4);
+    DFF(in=MoDi4, out=DoMaAb4);
+
+    Mux(a=DoMaAb5, b=in[4], sel=load, out=MoDi5);
+    DFF(in=MoDi5, out=DoMaAb5);
+
+    Mux(a=DoMaAb6, b=in[5], sel=load, out=MoDi6);
+    DFF(in=MoDi6, out=DoMaAb6);
+
+    Mux(a=DoMaAb7, b=in[6], sel=load, out=MoDi7);
+    DFF(in=MoDi7, out=DoMaAb7);
+
+    Mux(a=DoMaAb8, b=in[7], sel=load, out=MoDi8);
+    DFF(in=MoDi8, out=DoMaAb8);
+
+    Mux(a=DoMaAb9, b=in[8], sel=load, out=MoDi9);
+    DFF(in=MoDi9, out=DoMaAb9);
+
+    Mux(a=DoMaAba, b=in[9], sel=load, out=MoDia);
+    DFF(in=MoDia, out=DoMaAba);
+
+    Mux(a=DoMaAbb, b=in[10], sel=load, out=MoDib);
+    DFF(in=MoDib, out=DoMaAbb);
+
+    Mux(a=DoMaAbc, b=in[11], sel=load, out=MoDic);
+    DFF(in=MoDic, out=DoMaAbc);
+
+    Mux(a=DoMaAbd, b=in[12], sel=load, out=MoDid);
+    DFF(in=MoDid, out=DoMaAbd);
+
+    Mux(a=DoMaAbe, b=in[13], sel=load, out=MoDie);
+    DFF(in=MoDie, out=DoMaAbe);
+
+    Mux(a=DoMaAbf, b=in[14], sel=load, out=MoDif);
+    DFF(in=MoDif, out=DoMaAbf);
+
+    Mux(a=DoMaAbg, b=in[15], sel=load, out=MoDig);
+    DFF(in=MoDig, out=DoMaAbg);
+
+    And16(
+        a=true,        b[0]=DoMaAb1,  b[1]=DoMaAb2,  b[2]=DoMaAb3,  b[3]=DoMaAb4,
+        b[4]=DoMaAb5,  b[5]=DoMaAb6,  b[6]=DoMaAb7,  b[7]=DoMaAb8,  b[8]=DoMaAb9,
+        b[9]=DoMaAba,  b[10]=DoMaAbb, b[11]=DoMaAbc, b[12]=DoMaAbd, b[13]=DoMaAbe,
+        b[14]=DoMaAbf, b[15]=DoMaAbg, out=out);
+}
